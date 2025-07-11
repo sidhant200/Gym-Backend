@@ -1,8 +1,10 @@
 package com.example.Gym_backend.controller;
 
 import com.example.Gym_backend.dto.MemberDto;
+import com.example.Gym_backend.dto.MemberDtoForId;
 import com.example.Gym_backend.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.Gym_backend.entities.Member;
 
@@ -15,15 +17,15 @@ public class Member_controller {
     private MemberService memberService;
 
     @GetMapping("member")
-    public List<MemberDto> getAllMembers(Member member){
+    public List<MemberDtoForId> getAllMembers(Member member){
         return memberService.readMembers();
 
     }
 
     @PostMapping("member")
-    public String createMember(@RequestBody Member member){
-        memberService.createMember(member);
-        return "created succesfull";
+    public ResponseEntity<MemberDto> createMember(@RequestBody MemberDto memberdto){
+       MemberDto created =  memberService.createMember(memberdto);
+        return ResponseEntity.ok(created);
     }
 
     @DeleteMapping("member/{id}")
@@ -32,7 +34,10 @@ public class Member_controller {
         return "deleted succesfull";
     }
 
-    @PutMapping("member/{id}")
-    public String updateMember(@RequestParam long id){
+    @PutMapping("members/{id}")
+    public ResponseEntity<MemberDto> updateMember(@RequestParam long id , @RequestBody MemberDto memberdto){
+       MemberDto updated =   memberService.updateMember(id , memberdto);
+       return ResponseEntity.ok(updated);
+
     }
 }
