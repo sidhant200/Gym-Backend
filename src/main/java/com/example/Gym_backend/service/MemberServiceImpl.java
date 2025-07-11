@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberDto updateMember(Long id , MemberDto dto) {
+    public MemberDtoForId updateMember(Long id , MemberDtoForId dto) {
         Member existedMember = memberRepo.findById(id)
                 .orElseThrow(()-> new RuntimeException("id not found " + id));
         existedMember.setName(dto.getName());
@@ -54,7 +54,7 @@ public class MemberServiceImpl implements MemberService{
         existedMember.setEmail(dto.getEmail());
 
         Member updated  = memberRepo.save(existedMember);
-        return converttoDTO(updated);
+        return converttoDTOForId(updated);
     }
 
 

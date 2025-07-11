@@ -9,7 +9,7 @@ public interface MemberService {
     boolean deleteMember(Long id);
     MemberDto createMember(MemberDto memberDto);
     List<MemberDtoForId> readMembers();
-    MemberDto updateMember(Long id , MemberDto dto);
+    MemberDtoForId updateMember(Long id , MemberDtoForId dto);
 
 
 
