@@ -18,5 +18,7 @@ public class Member {
     private String name;
     private String phone;
     private String email;
+    @Column(name = "membership_type")
+    private String membershipType;
 
 }

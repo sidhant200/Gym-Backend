@@ -11,6 +11,7 @@ import com.example.Gym_backend.entities.Member;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class Member_controller {
     @Autowired
@@ -29,9 +30,9 @@ public class Member_controller {
     }
 
     @DeleteMapping("member/{id}")
-    public String deleteMember(@RequestParam long id){
+    public ResponseEntity<?> deleteMember(@PathVariable long id){
         memberService.deleteMember(id);
-        return "deleted succesfull";
+        return ResponseEntity.ok("Successfi;;u de;eted");
     }
 
     @PutMapping("members/{id}")

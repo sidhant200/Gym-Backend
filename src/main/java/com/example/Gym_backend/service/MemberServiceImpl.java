@@ -29,9 +29,10 @@ public class MemberServiceImpl implements MemberService{
         member.setName(memberDto.getName());
         member.setEmail(memberDto.getEmail());
         member.setPhone(memberDto.getPhone());
+        member.setMembershipType(memberDto.getMembershipType());
 
         Member saved = memberRepo.save(member);
-        return new MemberDto(saved.getName(), saved.getPhone(), saved.getEmail());
+        return new MemberDto(saved.getName(), saved.getPhone(), saved.getEmail() , saved.getMembershipType());
 
 
     }
@@ -52,6 +53,7 @@ public class MemberServiceImpl implements MemberService{
         existedMember.setName(dto.getName());
         existedMember.setPhone(dto.getPhone());
         existedMember.setEmail(dto.getEmail());
+        existedMember.setMembershipType(dto.getMembershipType());
 
         Member updated  = memberRepo.save(existedMember);
         return converttoDTOForId(updated);
@@ -63,6 +65,7 @@ public class MemberServiceImpl implements MemberService{
         dto.setEmail(member.getEmail());
         dto.setPhone(member.getPhone());
         dto.setName(member.getName());
+        dto.setMembershipType(member.getMembershipType());
         return dto;
 
     }
@@ -72,6 +75,7 @@ public class MemberServiceImpl implements MemberService{
         dto.setEmail(member.getEmail());
         dto.setPhone(member.getPhone());
         dto.setName(member.getName());
+        dto.setMembershipType(member.getMembershipType());
         return dto;
     }
 
