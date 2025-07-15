@@ -6,10 +6,7 @@ import com.example.Gym_backend.Trainerdto.TrainerDtoForid;
 import com.example.Gym_backend.Trainerentity.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,12 @@ public class TrainerController {
     public ResponseEntity<TrainerDto> createTrainer(@RequestBody TrainerDto trainerDto){
       TrainerDto created =   trainerService.createTrainer(trainerDto);
         return ResponseEntity.ok(created);
+    }
+
+    @PutMapping("trainer/{id}")
+    public ResponseEntity<TrainerDtoForid> updateTrainer(@PathVariable Long id , @RequestBody TrainerDtoForid trainerDtoForid){
+        TrainerDtoForid updated = trainerService.updateTrainer(id , trainerDtoForid);
+        return ResponseEntity.ok(updated);
     }
 
 }

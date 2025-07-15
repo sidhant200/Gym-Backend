@@ -32,13 +32,23 @@ public class Member_controller {
     @DeleteMapping("member/{id}")
     public ResponseEntity<?> deleteMember(@PathVariable long id){
         memberService.deleteMember(id);
-        return ResponseEntity.ok("Successfi;;u de;eted");
+        return ResponseEntity.ok("Successfully deleted");
     }
 
     @PutMapping("members/{id}")
     public ResponseEntity<MemberDtoForId> updateMember(@PathVariable long id , @RequestBody MemberDtoForId memberdtoforid){
        MemberDtoForId updated =   memberService.updateMember(id , memberdtoforid);
        return ResponseEntity.ok(updated);
+
+    }
+
+    @GetMapping("member/search")
+    public List<Member> searchBy(@RequestParam(required = false) String name,
+                                 @RequestParam(required = false) String email,
+                                 @RequestParam(required = false) String phone,
+                                  @RequestParam(required = false) Long id){
+
+        return memberService.search(name , phone , email , id);
 
     }
 }

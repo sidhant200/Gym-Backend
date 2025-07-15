@@ -10,6 +10,8 @@ public interface MemberService {
     MemberDto createMember(MemberDto memberDto);
     List<MemberDtoForId> readMembers();
     MemberDtoForId updateMember(Long id , MemberDtoForId dto);
+    List<Member>search(String name , String phone , String email , Long id);
+
 
 
 

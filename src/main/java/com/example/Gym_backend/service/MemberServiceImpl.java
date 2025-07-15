@@ -79,4 +79,9 @@ public class MemberServiceImpl implements MemberService{
         return dto;
     }
 
+    @Override
+    public List<Member> search(String name , String phone , String email , Long id){
+        return memberRepo.search( name ,  phone ,  email ,  id);
+    }
+
 }
