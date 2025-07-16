@@ -9,14 +9,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-@Table(name = "MemberTb")
+@Table(name = "MemberTb" , uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "phone")
+})
 
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    @Column(nullable = false)
     private String phone;
+    @Column(nullable = false)
     private String email;
     @Column(name = "membership_type")
     private String membershipType;

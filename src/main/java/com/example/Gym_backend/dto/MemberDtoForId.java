@@ -1,5 +1,6 @@
 package com.example.Gym_backend.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,7 +19,9 @@ public class MemberDtoForId {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    @Column(nullable = false)
     private String phone;
+    @Column(nullable = false)
     private String email;
     private String membershipType;
 

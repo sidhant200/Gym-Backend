@@ -4,6 +4,7 @@ import com.example.Gym_backend.entities.Member;
 
 import com.example.Gym_backend.dto.MemberDto;
 
+import com.example.Gym_backend.exception.DuplicateResourceException;
 import com.example.Gym_backend.repository.MemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,20 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public MemberDto createMember(MemberDto memberDto) {
+
+
+        if (memberRepo.countByEmail(memberDto.getEmail())>0) {
+            System.out.println("Duplicate email detected: " + memberDto.getEmail());
+
+            throw new RuntimeException("email exists");
+        }
+         if (memberRepo.countByPhone(memberDto.getPhone())>0) {
+             System.out.println("Duplicate email detected: " + memberDto.getPhone());
+
+            throw new RuntimeException("phone exists");
+        }
+
+
         Member member = new Member();
         member.setName(memberDto.getName());
         member.setEmail(memberDto.getEmail());
@@ -48,6 +63,16 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public MemberDtoForId updateMember(Long id , MemberDtoForId dto) {
+
+        if (memberRepo.countByEmail(dto.getEmail())>0) {
+
+
+            throw new RuntimeException("email exists");
+        }
+        if (memberRepo.countByPhone(dto.getPhone())>0) {
+
+            throw new RuntimeException("phone exists");
+        }
         Member existedMember = memberRepo.findById(id)
                 .orElseThrow(()-> new RuntimeException("id not found " + id));
         existedMember.setName(dto.getName());
