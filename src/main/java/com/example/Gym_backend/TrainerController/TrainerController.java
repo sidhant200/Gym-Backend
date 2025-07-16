@@ -34,4 +34,9 @@ public class TrainerController {
         return ResponseEntity.ok(updated);
     }
 
+    @DeleteMapping("trainer/{id}")
+        public ResponseEntity<?> deleteTrainer(@PathVariable long id){
+        trainerService.deleteTrainer(id);
+        return ResponseEntity.ok("deleted");
+    }
 }

@@ -64,15 +64,15 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public MemberDtoForId updateMember(Long id , MemberDtoForId dto) {
 
-        if (memberRepo.countByEmail(dto.getEmail())>0) {
-
-
-            throw new RuntimeException("email exists");
-        }
-        if (memberRepo.countByPhone(dto.getPhone())>0) {
-
-            throw new RuntimeException("phone exists");
-        }
+//        if (memberRepo.countByEmail(dto.getEmail())>0) {
+//
+//
+//            throw new RuntimeException("email exists");
+//        }
+//        if (memberRepo.countByPhone(dto.getPhone())>0) {
+//
+//            throw new RuntimeException("phone exists");
+//        }
         Member existedMember = memberRepo.findById(id)
                 .orElseThrow(()-> new RuntimeException("id not found " + id));
         existedMember.setName(dto.getName());
