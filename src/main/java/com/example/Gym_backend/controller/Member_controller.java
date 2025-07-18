@@ -16,6 +16,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 
 
+
 public class Member_controller {
     @Autowired
     private MemberService memberService;
@@ -66,4 +67,6 @@ public class Member_controller {
         return memberService.search(name , phone , email , id);
 
     }
+
+
 }
